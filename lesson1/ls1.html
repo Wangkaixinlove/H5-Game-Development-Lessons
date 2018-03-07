@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body> 
+    <!-- <svg width="120" height="120" viewPort="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="100" height="100">
+            <animate attributeType="XML" attributeName="x" from="-100" to="120">
+        </rect>
+    </svg> -->
+    <canvas id="canvas1" width="200" height="200" style="font-size:300px;"></canvas>
+    <script>
+      var canvas1=document.getElementById('canvas1');
+      var context=canvas1.getContext('2d');
+      context.moveTo(10,10);
+      context.lineTo(50,50);
+      context.lineTo(10,50);
+      //context.lineTo(10,10);
+      context.closePath();
+      context.fillStyle='red';
+      context.fill();
+      context.stroke();
+
+      //context.closePath();
+      context.beginPath();
+      context.strokeStyle="red";
+      
+      
+      context.strokeText("123",100,200,300);
+          </script>
+ </body>
+</html> 
