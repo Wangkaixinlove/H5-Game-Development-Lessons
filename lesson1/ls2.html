@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="myFiveSides.js"></script>
+</head>
+<body> 
+    <!-- <svg width="120" height="120" viewPort="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="100" height="100">
+            <animate attributeType="XML" attributeName="x" from="-100" to="120">
+        </rect>
+    </svg> -->
+    <canvas id="canvas1" width="800" height="800" style="font-size:300px;"></canvas>
+    <script>
+      var canvas1=document.getElementById('canvas1');
+      var context=canvas1.getContext('2d');
+     
+      context.beginPath();
+      context.strokeStyle="red";
+      context.arc(100,100,50,0,0.5*Math.PI);
+      context.stroke();     
+     
+      context.beginPath();
+      context.strokeStyle="red";
+      context.arc(100,100,50,1.5*Math.PI,1*Math.PI,true);
+      context.stroke();  
+
+      context.beginPath();
+      context.moveTo(0,10);
+      context.bezierCurveTo(0,50,100,50,100,100,50);
+      context.stroke();
+    // context.beginPath();
+    //             context.moveTo(0,10);
+    //             context.quadraticCurveTo(100,125,0,50);//二次曲线，cpx,cpy,x,y
+    //             context.moveTo(150,10);
+    //             context.bezierCurveTo(0,110,300,210,150,310);//贝塞尔曲线，cp1x,cp1y,cp2x,cp2y,x,y
+    //             context.stroke();
+
+    context.beginPath();
+    context.ellipse(80,80,20,10,0,0,2*Math.PI);
+    context.stroke();
+
+//创建自己的库（绘制五边形）
+    (function () {
+    CanvasRenderingContext2D.prototype.fiveSides = function (x1,y1,x2,y2,x3,y3,x4,y4,x5,y5) {
+        this.moveTo(x1,y1);
+        this.lineTo(x2,y3);
+        this.lineTo(x3,y3);
+        this.lineTo(x4,y4);
+        this.lineTo(x5,y5);
+        this.closePath();
+        this.stroke();
+    }
+    })();
+    context.beginPath();
+    context.fiveSides(20,20,40,50,60,80,30,70,20,10);
+    context.stroke();
+  //  渐变
+ var grd = context.createLinearGradient(100,100,200,200);
+ grd.addColorStop(0, 'rgb(255,0,0)');
+                grd.addColorStop(0.5, 'rgb(0,255,0)');
+                grd.addColorStop(1, 'rgb(255,0,0)');
+context.fillStyle = grd;
+context.strokeRect(100,100,200,200);
+context.fillRect(100,100,200,200);
+//填充图片
+//剪切
+            ctx.save(); 
+            // 绘制第一个圆 
+            ctx.beginPath();
+            ctx.fillStyle = 'tomato';
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2, false);
+            ctx.fill(); 
+            ctx.clip(); //限制在该圆范围内
+            
+            // 绘制第二个圆 
+            ctx.beginPath(); ctx.fillStyle = '#333';
+            ctx.arc(cx + 100, cy, radius, 0, Math.PI * 2, false);
+            ctx.fill();
+            ctx.clip(); 
+            
+            // 绘制第三个圆 
+            ctx.beginPath();
+            ctx.fillStyle = 'yellow';
+            ctx.arc(cx, cy + 100, radius, 0, Math.PI * 2, false);
+            ctx.fill(); 
+            //ctx.clip();
+            //ctx.restore(); 恢复到save之前状态，不受其他圆的限制
+            
+            // 绘制第四个圆 
+            ctx.beginPath();
+            ctx.strokeStyle = '#ccc';
+            ctx.lineWidth = 10;
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2, false);
+            ctx.stroke();
+            ctx.restore();
+     </script>
+ </body>
+</html> 
